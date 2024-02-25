@@ -56,6 +56,15 @@ export default {
         '4xl': '17px',
       },
       spacing: {
+        '1px': '1px',
+        '2px': '2px',
+        '3px': '3px',
+        ...pxToRemFunc(1, 1000),
+      },
+      inset: {
+        ...pxToRemFunc(1, 1000),
+      },
+      spacing: {
         3.25: '13px',
         5.25: '21px',
         7.25: '29px',
@@ -64,15 +73,9 @@ export default {
       backgroundImage: {
         input__button: "url('/src/assets/svg/input-button.svg')",
       },
-      fontSize: {
-        ...pxToRemFunc(1, 1000),
-      },
-      lineHeight: {
-        ...pxToRemFunc(1, 1000),
-      },
       screens: {
         mobile: '360px',
-        xs: '500px',
+        xs: '450px',
         tablet: '768px',
         desktop: '1280px',
       },
