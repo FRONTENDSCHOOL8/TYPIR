@@ -55,33 +55,6 @@ export default {
         '3xl': '16px',
         '4xl': '17px',
       },
-      width: {
-        innerWrapper: '1050px',
-        'productBox-width': '249px',
-        100: '400px',
-        61.75: '247px',
-        48.5: '194px',
-        7.5: '30px',
-        75: '300px',
-        78.75: '315px',
-        85: '340px',
-        140: '560px',
-        262.5: '1050px',
-      },
-      height: {
-        'productBox-height': '538px',
-        3.25: '13px',
-        7.5: '30px',
-        13: '52px',
-        13.5: '54px',
-        18: '72px',
-        167.5: '670px',
-      },
-      inset: {
-        'productBox-cart-top': '258px',
-        'productBox-cart-left': '189px',
-        18: '72px',
-      },
       spacing: {
         3.25: '13px',
         5.25: '21px',
@@ -91,11 +64,11 @@ export default {
       backgroundImage: {
         input__button: "url('/src/assets/svg/input-button.svg')",
       },
-      screens: {
-        mobile: '360px',
-        xs: '500px',
-        tablet: '768px',
-        desktop: '1280px',
+      backgroundPosition: {
+        'radio--no': 'left top',
+        'radio--yes': 'left bottom',
+        'check--no': 'right top',
+        'check--yes': 'right bottom',
       },
     },
     animation: {
