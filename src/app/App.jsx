@@ -6,19 +6,41 @@ import Splash from '@/pages/Splash/Splash';
 import MyPage from '@/pages/MyPage/MyPage';
 import AccountManagement from '@/pages/AccountManagement/AccountManagement';
 import EditProfile from '@/pages/EditProfile/EditProfile';
-import Footer from '@/atoms/Footer/Footer';
-import MyPageRoutes from '@/Routes/MyPageRoutes';
-import CommunityPageRoutes from '@/Routes/CommunityPageRoutes';
-import UserPageRoutes from '@/Routes/UserPageRoutes';
-import LandingPageRoutes from '@/Routes/LandingPageRoutes';
+import NewStyle from '@/pages/NewStyle/NewStyle';
+import NewBoard from '@/pages/NewBoard/NewBoard';
+import SelectPostImage from '@/pages/SelectPostImage/SelectPostImage';
+import MyImageTemplate from '@/molecules/MyImageTemplate/MyImageTemplate';
+import MyDetailImage from '@/molecules/MyDetailImage/MyDetailImage';
+import BoardTemplate from '@/molecules/BoardTemplate/BoardTemplate';
+import MyPostTemplate from '@/molecules/MyPostTemplate/MyPostTemplate';
+
+/* 랜딩 페이지 관련 */
+import Landing from '@/pages/Landing/Landing';
+import DetailImage from '@/molecules/DetailImage/DetailImage';
+
+/* 커뮤니티 페이지 관련 */
+import Community from '@/pages/Community/Community';
+import CommunityDetail from '@/pages/CommunityDetail/CommunityDetail';
+
+/* 유저 페이지 관련 */
+import SignIn from '@/pages/SignIn/SignIn';
+import SignUp from '@/pages/SignUp/SignUp';
+import SetInitialProfile from '@/pages/SetInitialProfile/SetInitialProfile';
 
 function App() {
   return (
-    <div>
-      {/* <Category /> */}
-      {/* <DetailCategoryButton /> */}
-      <DetailCategory />
-    </div>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/mypage/account" element={<AccountManagement />} />
+        <Route path="/mypage/editProfile" element={<EditProfile />} />
+        <Route path="/mypage/album" element={<MyPage />} />
+        <Route path="/mypage/board" element={<MyPage />} />
+        <Route path="/mypage/bookmark" element={<MyPage />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 export default App;
