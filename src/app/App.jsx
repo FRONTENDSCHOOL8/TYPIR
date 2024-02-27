@@ -1,11 +1,11 @@
-import { RouterProvider } from 'react-router-dom';
-import router from './router';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MyPage from '@/pages/MyPage/MyPage';
+import AccountManagement from '@/pages/AccountManagement/AccountManagement';
+import Header from '@/molecules/Header/Header';
+import EditProfile from '@/pages/EditProfile/EditProfile';
+import Footer from '@/atoms/Footer/Footer';
 
 function App() {
-  return (
-    <div>
-      <h1>Hello</h1>
-    </div>
-  );
+  return <CategoryButton />;
 }
 export default App;
