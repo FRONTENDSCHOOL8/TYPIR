@@ -1,8 +1,6 @@
+import { CategoryButton } from '../atoms/CategoryButton/CategoryButton';
+
 function App() {
-  return (
-    <div>
-      <h1>Hello</h1>
-    </div>
-  );
+  return <CategoryButton />;
 }
 export default App;
