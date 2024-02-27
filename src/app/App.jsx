@@ -6,6 +6,12 @@ import EditProfile from '@/pages/EditProfile/EditProfile';
 import Footer from '@/atoms/Footer/Footer';
 
 function App() {
-  return <CategoryButton />;
+  return (
+    <div>
+      <Category />
+      <FileInput />
+      <ImageAddButton />
+    </div>
+  );
 }
 export default App;
