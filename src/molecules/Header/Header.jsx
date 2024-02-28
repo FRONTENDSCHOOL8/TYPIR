@@ -8,7 +8,7 @@ function Header() {
   const { isModalOpen, openModal } = useStore();
 
   return (
-    <div className="w-80 h-12 bg-white flex justify-between items-center p-4" style={{ position: 'relative' }}>
+    <div className="w-[320px] h-[45px] bg-white flex justify-between items-center p-4" style={{ position: 'relative' }}>
       <Logo size="w-20" />
       <FontAwesomeIcon icon={faBars} size="lg" onClick={openModal} />
       {isModalOpen && <SelectPageModal />}
