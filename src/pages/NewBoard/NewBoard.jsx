@@ -75,9 +75,8 @@ const NewBoard = ({ imageId, category }) => {
       <form className="  gap-[10px] xs:flex flex-row xs:gap-[50px] xs:mx-auto">
         <FileInput imageSrc={imageSrc} image={image} setImage={setImage} preview={preview} setPreview={setPreview} />
 
-        <div className="flex flex-col gap-2 xs:gap-4 justify-center">
+        <div className="flex flex-col gap-2 xs:gap-4 justify-center ">
           <CategoryButton selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
-
           <CommonInput
             text=""
             value={title}
@@ -85,10 +84,11 @@ const NewBoard = ({ imageId, category }) => {
             placeholder="제목"
             border="rounded-2xl"
             borderColor="border-gray-200"
+            width="w-[300px]"
           />
           {/* 내용 입력(input) 컴포넌트 */}
           <CommonTextarea value={context} onChange={handleContentChange} className="xs:h-[220px]" />
-          <div className="flex flex-row justify-center gap-[30px] mt-[15px]">
+          <div className="flex flex-row justify-center gap-[30px] my-[15px]">
             {/* 취소 버튼 */}
             <StrokeButton
               width="w-[70px]"
