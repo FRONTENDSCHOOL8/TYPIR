@@ -1,11 +1,10 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MyPage from '@/pages/MyPage/MyPage';
-import AccountManagement from '@/pages/AccountManagement/AccountManagement';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Header from '@/molecules/Header/Header';
-import EditProfile from '@/pages/EditProfile/EditProfile';
 import Footer from '@/atoms/Footer/Footer';
-import RendingDetail from '@/pages/RendingDetail/RendingDetail';
-import Rending from '@/pages/Rending/Rending';
+import MyPageRoutes from '@/Routes/MyPageRoutes';
+import CommunityPageRoutes from '@/Routes/CommunityPageRoutes';
+import UserPageRoutes from '@/Routes/UserPageRoutes';
+import LandingPageRoutes from '@/Routes/LandingPageRoutes';
 
 function App() {
   return (
