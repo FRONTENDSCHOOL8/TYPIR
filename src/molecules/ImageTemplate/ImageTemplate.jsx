@@ -30,23 +30,20 @@ function ImageTemplate({ boardText, margin = 'mt-[15px]', data = images }) {
   };
 
   return (
-    <ul className={`max-w-screen-md h-auto bg-white ${margin}`}>
+    <div className="w-[290px] h-auto bg-white">
       <Masonry
         breakpointCols={breakpointColumnsObj}
-        className="my-masonry-grid flex gap-[12px] px-4"
+        className="my-masonry-grid flex"
         columnClassName="my-masonry-grid_column flex flex-col items-center"
       >
-        {data.map((item) => (
-          <motion.li key={item.id} layoutId={item.id + ''}>
-            <button type="button" onClick={() => onBoxClicked(item.id)}>
-              <img
-                src={item.image}
-                alt={item.alt}
-                className={`w-[170px] bg-gray-100 rounded-2xl mb-[15px] cursor-zoom-in`}
-                style={{ height: `${item.height}px` }}
-              />
-            </button>
-          </motion.li>
+        {images.map((item) => (
+          <div
+            key={item.id}
+            className={`w-[135px] bg-gray-100 rounded-2xl mb-[15px]`}
+            style={{ height: `${item.height}px` }}
+          >
+            {item.content}
+          </div>
         ))}
       </Masonry>
     </ul>
