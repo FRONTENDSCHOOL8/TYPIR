@@ -1,6 +1,9 @@
-import Category from '@/molecules/Category/Category.jsx';
-import DetailCategoryButton from '@/atoms/DetailCategory/DetailCategory';
-import DetailCategory from '@/molecules/DetailCategory/DetailCategory';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MyPage from '@/pages/MyPage/MyPage';
+import AccountManagement from '@/pages/AccountManagement/AccountManagement';
+import Header from '@/molecules/Header/Header';
+import EditProfile from '@/pages/EditProfile/EditProfile';
+import Footer from '@/atoms/Footer/Footer';
 
 function App() {
   return (
