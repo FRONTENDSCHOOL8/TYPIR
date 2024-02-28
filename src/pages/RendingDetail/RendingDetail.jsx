@@ -5,9 +5,8 @@ import DetailCategory from '@/molecules/DetailCategory/DetailCategory';
 const RendingDetail = () => {
   return (
     <div className="template">
-        <FileInput />
-        <DetailCategory />
-  
+      <DetailImage />
+      <DetailCategory />
     </div>
   );
 };
