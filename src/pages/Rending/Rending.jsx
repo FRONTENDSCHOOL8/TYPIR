@@ -1,5 +1,5 @@
 import Header from '@/molecules/Header/Header';
-import Category from '@/molecules/Category/Category';
+import Category from '@/molecules/Category/CategoryNew';
 import ImageTemplate from '@/molecules/ImageTemplate/ImageTemplate';
 import { Route } from 'react-router-dom';
 
