@@ -64,11 +64,16 @@ export default {
       backgroundImage: {
         input__button: "url('/src/assets/svg/input-button.svg')",
       },
-      backgroundPosition: {
-        'radio--no': 'left top',
-        'radio--yes': 'left bottom',
-        'check--no': 'right top',
-        'check--yes': 'right bottom',
+      fontSize: {
+        ...pxToRemFunc(1, 1000),
+      },
+      lineHeight: {
+        ...pxToRemFunc(1, 1000),
+      },
+      screens: {
+        mobile: '360px',
+        tablet: '768px',
+        desktop: '1280px',
       },
     },
     animation: {
