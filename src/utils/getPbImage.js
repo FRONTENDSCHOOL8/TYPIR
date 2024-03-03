@@ -1,4 +1,4 @@
-const PB_AP = import.meta.env.VITE_PB_API;
+const PB_AP = import.meta.env.VITE_PB_URL;
 
 export default function getPbImage({ collectionId, id, image }) {
   return `${PB_AP}/api/files/${collectionId}/${id}/${image}`;

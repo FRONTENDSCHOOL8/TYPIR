@@ -7,7 +7,7 @@ const Rending = () => {
   return (
     <div className="template">
       <Category />
-      <ImageTemplate />
+      {/* <ImageTemplate /> */}
     </div>
   );
 };
