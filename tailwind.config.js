@@ -75,7 +75,6 @@ export default {
       },
       screens: {
         mobile: '360px',
-        xs: '450px',
         tablet: '768px',
         desktop: '1280px',
       },
