@@ -37,7 +37,7 @@ function LoginForm() {
         isProtect: authData.record.isProtect,
       });
       console.log(useUserStore.getState().user); // 상태 확인 방법
-      alert('로그인 성공: ' + authData.record.isFirstLogin);
+      alert('로그인 성공');
       console.log(authData);
       if (authData.record.isFirstLogin) {
         // isFirstLogin을 false로 바꾸는 코드 추가
