@@ -4,7 +4,7 @@ import CommonInput from '@/atoms/CommonInput/CommonInput';
 import ProfileImage from '@/atoms/ProfileImage/ProfileImage';
 import TextContents from '@/atoms/TextContents/TextContents';
 import { getPbImage } from '@/utils';
-import { useProfileStore } from '@/zustand/useStore';
+import { useProfileStore, useUserStore } from '@/zustand/useStore';
 import { useEffect } from 'react';
 import pb from '@/api/pocketbase';
 
@@ -13,8 +13,19 @@ const isSpecialCharPresent = (string) => {
 };
 
 function EditProfile() {
-  const { userList, setUserList, setProfiles, username, setUserName, handle, setHandle, imageUrl, setImageUrl } =
-    useProfileStore();
+  const {
+    userList,
+    setUserList,
+    setProfiles,
+    username,
+    setUserName,
+    handle,
+    setHandle,
+    imageUrl,
+    setImageUrl,
+    tempSelectedImage,
+    tempSelectedFile,
+  } = useProfileStore();
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
@@ -41,12 +52,19 @@ function EditProfile() {
     const userData = {
       username: username,
       handle: handle,
-      profile: userList?.profile || null,
     };
+
+    const formData = new FormData();
+    formData.append('username', userData.username);
+    formData.append('handle', userData.handle);
+
+    if (tempSelectedImage) {
+      formData.append('profile', tempSelectedFile, tempSelectedImage.name);
+    }
 
     if (userId) {
       try {
-        await pb.collection('users').update(userId, userData);
+        await pb.collection('users').update(userId, formData);
       } catch (error) {
         console.error('데이터 저장 실패:', error);
       }
@@ -56,12 +74,12 @@ function EditProfile() {
   };
 
   const nameValid = (username) => {
-    if (!username) return false; // username이 undefined일 경우를 대비한 체크
+    if (!username) return false;
     return /^[a-zA-Z0-9]+$/.test(username) && username.length >= 3 && username.length <= 16;
   };
 
   const handleValid = (handle) => {
-    if (!handle) return false; // handle이 undefined일 경우를 대비한 체크
+    if (!handle) return false;
     return /^[a-zA-Z0-9_]+$/.test(handle) && handle.length >= 3 && handle.length <= 16;
   };
 
