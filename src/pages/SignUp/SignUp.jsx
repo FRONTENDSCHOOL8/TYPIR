@@ -37,9 +37,9 @@ const SignUp = () => {
   };
 
   const handleCloseModalAndNavigate = () => {
-    closeModal();
-    if (modalMessage === '축하합니다!\n회원가입 완료되었습니다.') {
-      navigate('/splash/signin');
+    closeModal(); // 먼저 모달을 닫음
+    if (modalMessage === '축하합니다! 회원가입 완료되었습니다.') {
+      navigate('/splash/signin'); // 회원가입 성공 메시지인 경우에만 페이지 이동
     }
   };
 
