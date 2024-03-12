@@ -13,20 +13,8 @@ const isSpecialCharPresent = (string) => {
 };
 
 function EditProfile() {
-  const { userList, setUserList } = useUserStore();
-  const {
-    userList,
-    setUserList,
-    setProfiles,
-    username,
-    setUserName,
-    handle,
-    setHandle,
-    imageUrl,
-    setImageUrl,
-    tempSelectedImage,
-    tempSelectedFile,
-  } = useProfileStore();
+  const { userList, setUserList, setProfiles, username, setUserName, handle, setHandle, imageUrl, setImageUrl } =
+    useProfileStore();
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
