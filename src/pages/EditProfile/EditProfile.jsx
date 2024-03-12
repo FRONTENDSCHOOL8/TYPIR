@@ -4,7 +4,7 @@ import CommonInput from '@/atoms/CommonInput/CommonInput';
 import ProfileImage from '@/atoms/ProfileImage/ProfileImage';
 import TextContents from '@/atoms/TextContents/TextContents';
 import { getPbImage } from '@/utils';
-import { useProfileStore } from '@/zustand/useStore';
+import { useProfileStore, useUserStore } from '@/zustand/useStore';
 import { useEffect } from 'react';
 import pb from '@/api/pocketbase';
 
@@ -13,6 +13,7 @@ const isSpecialCharPresent = (string) => {
 };
 
 function EditProfile() {
+  const { userList, setUserList } = useUserStore();
   const {
     userList,
     setUserList,
@@ -28,11 +29,12 @@ function EditProfile() {
   } = useProfileStore();
 
   useEffect(() => {
-    if (userList) {
-      setProfiles([userList]);
-      setUserName(userList?.username);
-      setHandle(userList?.handle);
-      setUserList(userList);
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setProfiles([user]);
+      setUserName(user.userName);
+      setHandle(user.handle);
       setImageUrl(
         getPbImage({
           collectionId: 'users',
@@ -41,48 +43,9 @@ function EditProfile() {
         }),
       );
     }
-  }, [setProfiles, setUserName, setHandle, setImageUrl, userList, setUserList]);
+  }, [setProfiles, setUserName, setHandle, setImageUrl]);
 
-  const userId = userList.id;
-
-  const handleSaveButton = async (event) => {
-    event.preventDefault();
-
-    const userData = {
-      username: username,
-      handle: handle,
-    };
-
-    const formData = new FormData();
-    formData.append('username', userData.username);
-    formData.append('handle', userData.handle);
-
-    if (tempSelectedImage) {
-      formData.append('profile', tempSelectedFile, tempSelectedImage.name);
-    }
-
-    if (userId) {
-      try {
-        await pb.collection('users').update(userId, formData);
-      } catch (error) {
-        console.error('데이터 저장 실패:', error);
-      }
-    } else {
-      console.error('유저 아이디가 없습니다.');
-    }
-  };
-
-  const nameValid = (username) => {
-    if (!username) return false;
-    return /^[a-zA-Z0-9]+$/.test(username) && username.length >= 3 && username.length <= 16;
-  };
-
-  const handleValid = (handle) => {
-    if (!handle) return false;
-    return /^[a-zA-Z0-9_]+$/.test(handle) && handle.length >= 3 && handle.length <= 16;
-  };
-
-  const isNameValid = username ? nameValid(username) : false;
+  const isNameValid = nameValid(userName);
   const isHandleValid = handleValid(handle);
 
   return (
@@ -105,7 +68,7 @@ function EditProfile() {
           margin="mt-1"
         />
         <div className="text-red-500 text-xs h-1 mt-1 ml-1">
-          {!isNameValid && '3글자 이상, 16글자 이하의 영문, 숫자만 사용 가능합니다.'}
+          {/* {!isNameValid && '3글자 이상, 16글자 이하의 영문, 숫자만 사용 가능합니다.'} */}
         </div>
       </div>
 
@@ -118,13 +81,13 @@ function EditProfile() {
           margin="mt-1"
         />
         <div className="text-red-500 text-xs h-1 mt-1 mb-9 ml-1">
-          {!isHandleValid && !isSpecialCharPresent(handle) && '3글자 이상, 16글자 이하의 영문, 숫자만 사용 가능합니다.'}
+          {/* {!isHandleValid && !isSpecialCharPresent(handle) && '3글자 이상, 16글자 이하의 영문, 숫자만 사용 가능합니다.'} */}
           {isSpecialCharPresent(handle) && '특수문자는 언더스코어(_)만 허용됩니다.'}
         </div>
       </div>
 
-      <CommonButton type="submit" onClick={handleSaveButton} />
-    </form>
+      <CommonButton />
+    </div>
   );
 }
 export default EditProfile;

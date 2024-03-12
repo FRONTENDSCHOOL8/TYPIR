@@ -45,36 +45,22 @@ export const useImageStore = create((set) => ({
 }));
 
 /* 마이 페이지 유저 프로필 */
-export const useProfileStore = create(
-  persist(
-    (set) => ({
-      userList: [],
-      setUserList: (userList) => set({ userList }),
-      profiles: [],
-      setProfiles: (profiles) => set({ profiles }),
-      username: '',
-      setUserName: (username) => set({ username }),
-      handle: '',
-      setHandle: (handle) => set({ handle }),
-      isPrivate: false,
-      setIsPrivate: (isPrivate) => set({ isPrivate }),
-      isProtect: false,
-      setIsProtect: (isProtect) => set({ isProtect }),
-      imageUrl: '',
-      setImageUrl: (imageUrl) => set({ imageUrl }),
-      /* 미리 보기용 로컬 URL */
-      tempSelectedImage: null,
-      setTempSelectedImage: (image) => set({ tempSelectedImage: image }),
-      /* 서버 전송용 이미지 객체 */
-      tempSelectedFile: null,
-      setTempSelectedFile: (file) => set({ tempSelectedFile: file }),
-    }),
-    {
-      name: 'profile-storage',
-      getStorage: () => sessionStorage,
-    },
-  ),
-);
+export const useProfileStore = create((set) => ({
+  profiles: [],
+  setProfiles: (profiles) => set({ profiles }),
+  userName: '',
+  setUserName: (userName) => set({ userName }),
+  handle: '',
+  setHandle: (handle) => set({ handle }),
+  nameValid: (nickname) => /^[a-zA-Z0-9]+$/.test(nickname) && nickname.length >= 3 && nickname.length <= 16,
+  handleValid: (handle) => /^[a-zA-Z0-9_]+$/.test(handle) && handle.length >= 3 && handle.length <= 16,
+  imageUrl: '',
+  setImageUrl: (imageUrl) => set({ imageUrl }),
+  isPrivate: false,
+  setIsPrivate: (isPrivate) => set({ isPrivate }),
+  isProtect: false,
+  setIsProtect: (isProtect) => set({ isProtect }),
+}));
 
 /* 마이 페이지 앨범 */
 export const useAlbumStore = create(
@@ -132,12 +118,4 @@ export const useAllBookmarkStore = create((set) => ({
 export const useCustomBookmarkStore = create((set) => ({
   customImages: [],
   setCustomImages: (images) => set({ customImages: images }),
-}));
-
-/* 커뮤니티 프로필 사진 */
-export const useProfileImageStore = create((set) => ({
-  image: null,
-  preview: '',
-  setPreview: (preview) => set({ preview }),
-  setImage: (image) => set({ image }),
 }));

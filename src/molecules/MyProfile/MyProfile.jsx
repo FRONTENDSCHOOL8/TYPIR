@@ -7,49 +7,46 @@ import HandleText from '@/atoms/HandleText/HandleText';
 import StrokeButton from '@/atoms/StrokeButton/StrokeButton';
 import { useNavigate } from 'react-router-dom';
 import { useProfileStore } from '@/zustand/useStore';
-import pb from '@/api/pocketbase';
 
 export default function MyProfile() {
-  const { userList, setUserList, imageUrl, setImageUrl } = useProfileStore();
+  const { profiles, setProfiles } = useProfileStore();
   const navigate = useNavigate();
 
   const handleNavigate = (path) => {
     navigate(path);
   };
 
+  const fetchUserRecords = async () => {
+    try {
+      const nowUser = await getStorage('pocketbase_auth');
+      const nowUserId = nowUser.model.id; // 프로미스가 아닌 실제 값으로 가져옵니다.
+      console.log(nowUserId);
+
+      const records = await pb.collection('users').getOne(nowUserId);
+      return records;
+    } catch (error) {
+      console.error('Error fetching user records:', error);
+      throw error; // 에러를 다시 throw하여 호출자에게 전달합니다.
+    }
+  };
+
   useEffect(() => {
-    let isCancelled = false;
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setProfiles([JSON.parse(storedUser)]);
+    }
+  }, [setProfiles]);
 
-    const fetchUserRecords = async () => {
-      try {
-        const nowUser = await getStorage('pocketbase_auth');
-        const nowUserId = nowUser.model.id;
+  if (profiles.length === 0) {
+    return <div>Loading...</div>;
+  }
 
-        if (!isCancelled) {
-          const records = await pb.collection('users').getOne(nowUserId);
-          if (!isCancelled) {
-            setUserList(records);
-            const profileImageUrl = getPbImage({
-              collectionId: 'users',
-              id: records.id,
-              image: records.profile,
-            });
-            setImageUrl(profileImageUrl);
-          }
-        }
-      } catch (error) {
-        if (!error.isAbort && !isCancelled) {
-          console.error('Error fetching data:', error);
-        }
-      }
-    };
-
-    fetchUserRecords();
-
-    return () => {
-      isCancelled = true;
-    };
-  }, [setUserList, setImageUrl]);
+  const profile = profiles[0];
+  const imageUrl = getPbImage({
+    collectionId: '_pb_users_auth_',
+    id: profile.id,
+    image: profile.profile,
+  });
 
   return (
     <div className="flex flex-col items-center p-3">
