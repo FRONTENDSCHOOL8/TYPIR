@@ -33,7 +33,39 @@ function EditProfile() {
     }
   }, [setProfiles, setUserName, setHandle, setImageUrl]);
 
-  const isNameValid = nameValid(userName);
+  const userId = userList.id;
+
+  const handleSaveButton = async (event) => {
+    event.preventDefault();
+
+    const userData = {
+      username: username,
+      handle: handle,
+      profile: userList?.profile || null,
+    };
+
+    if (userId) {
+      try {
+        await pb.collection('users').update(userId, userData);
+      } catch (error) {
+        console.error('데이터 저장 실패:', error);
+      }
+    } else {
+      console.error('유저 아이디가 없습니다.');
+    }
+  };
+
+  const nameValid = (username) => {
+    if (!username) return false; // username이 undefined일 경우를 대비한 체크
+    return /^[a-zA-Z0-9]+$/.test(username) && username.length >= 3 && username.length <= 16;
+  };
+
+  const handleValid = (handle) => {
+    if (!handle) return false; // handle이 undefined일 경우를 대비한 체크
+    return /^[a-zA-Z0-9_]+$/.test(handle) && handle.length >= 3 && handle.length <= 16;
+  };
+
+  const isNameValid = username ? nameValid(username) : false;
   const isHandleValid = handleValid(handle);
 
   return (
