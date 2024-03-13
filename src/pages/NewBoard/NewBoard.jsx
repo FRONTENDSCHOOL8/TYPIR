@@ -50,7 +50,7 @@ const NewBoard = ({ imageId, category }) => {
     formData.append('context', `${context}`);
 
     await pb.collection('communityPage').create(formData);
-    navigate('/community');
+    // navigate('/community');
     setTitle('');
     setContent('');
     setSelectedCategory('');
@@ -72,6 +72,38 @@ const NewBoard = ({ imageId, category }) => {
           <CommonButton fontSize="text-[14px]" />
         </div>
       </div>
+      <form className="  gap-[10px] xs:flex flex-row xs:gap-[50px] xs:mx-auto">
+        <FileInput imageSrc={imageSrc} image={image} setImage={setImage} preview={preview} setPreview={setPreview} />
+
+        <div className="flex flex-col gap-2 xs:gap-4 justify-center">
+          <CategoryButton selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+
+          <CommonInput
+            text=""
+            value={title}
+            onChange={handleTitleChange}
+            placeholder="제목"
+            border="rounded-2xl"
+            borderColor="border-gray-200"
+          />
+          {/* 내용 입력(input) 컴포넌트 */}
+          <CommonTextarea value={context} onChange={handleContentChange} className="xs:h-[220px]" />
+          <div className="flex flex-row justify-center gap-[30px] mt-[15px]">
+            {/* 취소 버튼 */}
+            <StrokeButton
+              width="w-[70px]"
+              height="h-[30px]"
+              fontSize="text-[12px]"
+              bgColor="bg-white"
+              fontColor="text-black"
+              text="취소"
+              onClick={handleCancel}
+            ></StrokeButton>
+            {/* 저장 버튼 */}
+            <CommonButton fontSize="text-[14px]" onClick={handleSave} type="submit" />
+          </div>
+        </div>
+      </form>
     </div>
   );
 };

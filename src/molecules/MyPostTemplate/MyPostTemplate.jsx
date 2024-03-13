@@ -59,8 +59,8 @@ function MyPostTemplate({ images }) {
               text={title}
               maxLength={25}
               fontFamily="font-serif"
-              fontWeight="font-semilight"
-              fontSize="text-[15px]"
+              fontWeight="font-bold"
+              fontSize="text-[18px]"
               padding="p-2"
               style={{
                 width: '170px',
