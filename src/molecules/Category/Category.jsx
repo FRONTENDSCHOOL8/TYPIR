@@ -49,6 +49,9 @@ const Category = ({ gap = 'gap-3' }) => {
           </li>
         ))}
       </ul>
+
+      <ImageTemplate data={filteredCategoryData} margin="mt-[15px]" />
+      {categoryImageMatch && <DetailImage layoutId={layoutId} imageSrc={imageSrc} />}
     </div>
   );
 };
